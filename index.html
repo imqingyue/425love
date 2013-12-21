@@ -8,23 +8,80 @@
 			font-family: digit;
 			src: url('digital-7_mono.ttf') format("truetype");
 		}
+		.mask{width: 100%;height: 100%;background:rgba(0, 0, 0, 0.2);position: absolute;top:0;left:0;z-index: 9999;}
+		.foreword{position: absolute;z-index: 10000;bottom: 30px;right: 50px;font-family: "微软雅黑";color: #6e6e6e;font-size: 14px;}
+		.foreword_Code{font-size: 18px;color: #4c4c4c;}
 	</style>
 	<link href="css/default.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/garden.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript">
+		$(function(){
+		showDialog();
+			function showDialog(){
+				var objW=$(window);//当前窗口
+				var objC=$(".dialog");//当前对话框
+				var brsW=objW.width();
+				var brsH=objW.height();
+				var sclL=objW.scrollLeft();
+				var sclT=objW.scrollTop();
+				var curW=objC.width();
+				var curH=objC.height();
+				//计算对话框的左边距
+				var left=sclL+(brsW-curW)/2;
+				//计算对话框的上边距
+				var top=sclT+(brsH-curH)/2;
+				//设置对话框的位置
+				objC.css({'left':left,"top":top});
+			}
+			$(window).resize(function(event) {//页面窗口大小改变事件
+				/* Act on the event */
+				if(!$(".dialog").is(":visible")){
+					return;
+				}
+				showDialog();//设置提示对话框的Top和left
+			});
+			scrollTimer_ = setInterval(function(){
+				if(scrollTimer_!=null){
+					clearInterval(scrollTimer_);
+				}
+				$(".dialog").hide(2000);
+				$(".foreword").hide(2000);
+				$(".mask").hide(2000);},12000);
+			scrollTimer2 = setInterval(function(){
+				if(scrollTimer_!=null){
+					clearInterval(scrollTimer2);
+				}
+				$('<audio autoplay="autoplay" height="100" width="100" loop="1"><source src="./music/Darin -Can\'t Stop Love.mp3" type="audio/mp3" /><source src="./music/Darin - Can\'t Stop Love.mp3" type="audio/ogg" /><embed height="1" width="1" src="./music/Darin - Can\'t Stop Love.mp3" loop="1" /></audio>').appendTo($('#mainDiv'));;
+			},10000);
+		});
+	</script>
 </head>
 
 <body>
+	
+	<!--<div><img src="" height="100" width="100"></div>-->
+	<div class="dialog" style="position: absolute;z-index: 10000;height: 390px;width:800px">
+			<object classid=clsid:D27CDB6E-AE6D-11cf-96B8-444553540000 codebase=http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0 height=390>
+			<param name="movie" value="./img/flash2417.swf">
+			<param name="quality" value="high">
+			<param name="wmode" value="transparent">
+			<embed src="./img/flash2417.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="850" height="390" wmode="transparent">
+			</embed>
+			</object>
+	</div>
+	<div class="foreword"><span class="foreword_Code">庆祝</span>我跟BaiCai相恋1.5周年纪念日<br>同时也为了以程序员的视角来表达浪漫<br><span class="foreword_Code">改变</span>大家对于程序员先入为主的形象<br>程序员<span class="foreword_Code">改变世界~</span></div>
+	<div class="mask"></div>
 	<div id="mainDiv">
 		<div id="content">
 			<div id="code">
 				<span class="comments">/**</span><br />
-				<span class="space"/><span class="comments">* We are both programmers and we have the same interest,</span><br />
-				<span class="space"/><span class="comments">* so I write some code to celebrate our 1st anniversary.</span><br />
+				<span class="space"/><span class="comments">* We are both programmers and we have the same interests,</span><br />
+				<span class="space"/><span class="comments">* so I write some code to celebrate our 1.5st anniversary.</span><br />
 				<span class="space"/><span class="comments">*/</span><br />
-				Boy i = <span class="keyword">new</span> Boy(<span class="string">"sundroid"</span>);<br />
-				Girl u = <span class="keyword">new</span> Girl(<span class="string">"mm"</span>);<br />
+				Boy i = <span class="keyword">new</span> Boy(<span class="string">"SongZhicheng"</span>);<br />
+				Girl u = <span class="keyword">new</span> Girl(<span class="string">"BaiCai"</span>);<br />
 				<span class="comments">//  I told you I love you. </span><br />
 				i.love(u);<br />
 				<span class="comments">// Luckily, you accepted and became my girlfriend eversince.</span><br />
@@ -50,26 +107,26 @@
 				<canvas id="garden"></canvas>
 				<div id="words">
 					<div id="messages">
-						mm, I have fallen in love with you for
+						BaiCai, I have fallen in love with you for
 						<div id="elapseClock"></div>
 					</div>
 					<div id="loveu">
 						Love u forever and ever.<br/>
-						<div class="signature">- sundroid</div>
+						<div class="signature">- SongZhicheng</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="copyright">
 			Inspired by <a href="http://www.openrise.com/lab/FlowerPower/">FlowerPower</a> project.<br />
-			Copyright © 2011 <a href='http://sundroid.sinaapp.com'>sundroid</a> 20013-2014
+			Copyright © 2011 <a href='http://sundroid.sinaapp.com'>SongZhicheng</a> 20013-2014
 		</div>
 	</div>
 	<script type="text/javascript">
 		var offsetX = $("#loveHeart").width() / 2;
 		var offsetY = $("#loveHeart").height() / 2 - 55;
 		var together = new Date();
-		together.setFullYear(2010, 10, 2);
+		together.setFullYear(2012, 5, 14);
 		together.setHours(20);
 		together.setMinutes(0);
 		together.setSeconds(0);
@@ -87,7 +144,7 @@
 		} else {
 			setTimeout(function () {
 				startHeartAnimation();
-			}, 5000);
+			}, 13000);
 
 			timeElapse(together);
 			setInterval(function () {

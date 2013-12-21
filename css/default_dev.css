@@ -1,7 +1,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #FFFFEE;
+	/*background: #FFFFEE;*/
+	background:url('../img/bg.jpg'),
 	font-size: 12px;
 	overflow: auto;
 }
